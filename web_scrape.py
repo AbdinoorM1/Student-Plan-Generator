@@ -81,7 +81,7 @@ def main():
         "General": {1: ["CMPT 101", "CMPT 103"], #General stream with pre-selected courses
                     2: ["CMPT 200", "CMPT 201", "CMPT 204", "CMPT 229" ],
                     3: ["CMPT 395", "CMPT 305", "CMPT 306","CMPT 312" ],
-                    4: ["CMPT 496, CMPT 450"]},
+                    4: ["CMPT 496"]},
                     
         "Databases and Interactive Visualization": {1:["CMPT 101", "CMPT 103"], #Databases stream with pre-selected courses
                     2: ["CMPT 200", "CMPT 201", "CMPT 250", "CMPT 272, CMPT 291" ],
@@ -96,7 +96,7 @@ def main():
         "Gaming":{1:["CMPT 101", "CMPT 103"], #Gaming stream with pre-selected courses
                 2: ["CMPT 200", "CMPT 201", "CMPT 230", "CMPT 291" ],
                 3: ["CMPT 330", "CMPT 370", "CMPT 395","CMPT 250" ],
-                4: ["CMPT 496, CMPT 497"]}
+                4: ["CMPT 496"]}
 }
 
     return years, courses, streams
