@@ -62,17 +62,29 @@ def extract_courses(dirty_data):
     courses = sorted(courses)
     return courses 
 
+
 def main():
     '''
     purpose: main func, runs the flow: get data > clean it > 
     parameters: None
-    return: None (for now)
+    return: list,list
     '''
     webpage = "https://calendar.macewan.ca/programs/degree-programs/bsc-computer-science/#studentplantext"
     site_data = read_site(webpage) 
     years = extract_years(site_data)
     courses = extract_courses(site_data)
-    print(f"years: {years}")
-    print(f"courses: {courses}")
+    streams = { #Manually created dictionary to seperate each stream, built for successful cases (pre-selected courses) (secondary key is the year (1st year , 2nd year, etc.).
 
+        "General": {1: ["CMPT 101", "CMPT 103"], #General stream with pre-selected courses
+                    2: ["CMPT 200", "CMPT 201", "CMPT 204", "CMPT 229" ],
+                    3: ["CMPT 395", "CMPT 305", "CMPT 306","CMPT 312" ],
+                    4: ["CMPT 496"]},
+                    
+        "Security":{1:["CMPT 101", "CMPT 103"], #Security stream with pre-selected courses
+                    2: ["CMPT 200", "CMPT 201", "CMPT 220", "CMPT 280" ],
+                    3: ["CMPT 360", "CMPT 361", "CMPT 380","CMPT 395" ],
+                    4: ["CMPT 464, CMPT 480, CMPT 496"]}
+    }
+
+    return years, courses, streams
 main()
