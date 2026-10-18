@@ -1,5 +1,6 @@
 # MaCS-Hacks-2026-Hackathon
 Plan: To create a "Generate Student Plan" button on the existing Computer Science Acedemic Calendar page (Student Plan tab)
+        
         -Frontend: Can do basic HTML, CSS, etc, or try using TypeScript if time allows
             -1 file:
                 -Cloned the html on the Acedemic Calendar page and added a button to open up a modal in the existing webpage
