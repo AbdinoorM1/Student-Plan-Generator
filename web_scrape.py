@@ -53,13 +53,20 @@ def extract_courses(dirty_data):
     course_offerings = soup.find_all("td", class_ = "codecol")
     temp = course_offerings
 
-    for i in temp: #getting courses offered (title + number)
-        course_names = i.text.replace('\xa0',' ')
-        if (course_names not in courses) and (len(course_names) == 8) and (course_names[0:4] == 'CMPT'): 
-            #^dont want duplicates, so only add courses not entered in the courses lst. also course names are max 8 chars, and need to start with CMPT
-            courses.append(course_names)
+    for i in temp: #getting courses offered (course code + course title)
+        course_code = i.text.replace('\xa0',' ') #extracting course code
+        title_tag = i.find_next_sibling('td') #extracting course title
+        course_title = title_tag.text.strip(" ")
+
+        if (course_code not in courses) and (len(course_code) == 8) and (course_code[0:4] == 'CMPT'): #^dont want duplicates, so only add courses not entered in the courses lst. also course names are max 8 chars, and need to start with CMPT
+            if (course_title not in courses) and (course_title.isdigit() == False) and (len(course_title) != 0): #dont want duplicates, random digits that previously appeared, or blank course titles
+                    full_course_str = f"{course_code} - {course_title}"
+                    if full_course_str not in courses: #final check to ensure no duplicates for full course str, validated course code + course title manually ;(
+                        courses.append((full_course_str)) 
 
     courses = sorted(courses)
+    for i in (courses):
+        print(i)
     return courses 
 
 
