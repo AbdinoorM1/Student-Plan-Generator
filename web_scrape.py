@@ -56,7 +56,7 @@ def extract_courses(dirty_data):
         course_code = i.text.replace('\xa0',' ') #extracting course code
         title_tag = i.find_next_sibling('td') #extracting course title
         course_title = title_tag.text.strip(" ")
-        
+
         if (course_code not in courses) and (len(course_code) == 8) and (course_code[0:4] == 'CMPT'): #^dont want duplicates, so only add courses not entered in the courses lst. also course names are max 8 chars, and need to start with CMPT
             if (course_title not in courses) and (course_title.isdigit() == False) and (len(course_title) != 0): #dont want duplicates, random digits that previously appeared, or blank course titles
                     full_course_str = f"{course_code} - {course_title}"
@@ -76,18 +76,28 @@ def main():
     site_data = read_site(webpage) 
     years = extract_years(site_data)
     courses = extract_courses(site_data)
-    streams = { #Manually created dictionary to seperate each stream, built for successful cases (pre-selected courses) (secondary key is the year (1st year , 2nd year, etc.).
+    streams = { #Manually created dictionary to seperate each stream, this is for demo purposes, secondary key is the year (1st year , 2nd year, etc.).
 
         "General": {1: ["CMPT 101", "CMPT 103"], #General stream with pre-selected courses
                     2: ["CMPT 200", "CMPT 201", "CMPT 204", "CMPT 229" ],
                     3: ["CMPT 395", "CMPT 305", "CMPT 306","CMPT 312" ],
-                    4: ["CMPT 496"]},
+                    4: ["CMPT 496, CMPT 450"]},
                     
+        "Databases and Interactive Visualization": {1:["CMPT 101", "CMPT 103"], #Databases stream with pre-selected courses
+                    2: ["CMPT 200", "CMPT 201", "CMPT 250", "CMPT 272, CMPT 291" ],
+                    3: ["CMPT 315", "CMPT 351", "CMPT 391","CMPT 395" ],
+                    4: ["CMPT 496, CMPT 450"]},
+
         "Security":{1:["CMPT 101", "CMPT 103"], #Security stream with pre-selected courses
                     2: ["CMPT 200", "CMPT 201", "CMPT 220", "CMPT 280" ],
                     3: ["CMPT 360", "CMPT 361", "CMPT 380","CMPT 395" ],
-                    4: ["CMPT 464, CMPT 480, CMPT 496"]}
-    }
+                    4: ["CMPT 464, CMPT 480, CMPT 496"]},
+
+        "Gaming":{1:["CMPT 101", "CMPT 103"], #Gaming stream with pre-selected courses
+                2: ["CMPT 200", "CMPT 201", "CMPT 230", "CMPT 291" ],
+                3: ["CMPT 330", "CMPT 370", "CMPT 395","CMPT 250" ],
+                4: ["CMPT 496, CMPT 497"]}
+}
 
     return years, courses, streams
 main()
